@@ -6,7 +6,6 @@ const CheckListForm = ({item, onUpdate}) => {
 	const [summary, setSummary] = useState(item.summary);
 	const [date, setDate] = useState(item.date);
 	const [checked, setCheck] = useState(item.checked);
-	const [disabled, setDisable] = useState(false);
 	const[isUpdate, setUpdate] = useState(true); //true: input 태그로 표시 false: p 태그로 표시
 
 
@@ -34,7 +33,6 @@ const CheckListForm = ({item, onUpdate}) => {
 				{!isUpdate ? <p>{summary}</p> : <input type='text' value={summary} onChange={(e)=>whenType(e, setSummary)}></input>}
 		
 			<p>{date}</p>
-			<button>날짜 옮기기</button>
 		</div>
 	);
 };
