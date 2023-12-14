@@ -138,7 +138,7 @@ function App() {
 				</WhiteBox>
 				<div id='body' className='border-[1px]'>
 					<div id='header' className='border-[1px]'>
-						<Title onAdd={addTodoHandler} />
+						<Title onAdd={addTodoHandler} date={date}/>
 					</div>
 					<CheckListContainer checkList={printList} onUpdate={UpdateList} id='list con' className='border-[1px]'>
 					</CheckListContainer>
