@@ -22,15 +22,13 @@ const CheckListForm = ({item, onUpdate}) => {
 
 	return (
 		<div>
-			<div className='flex px-2'>	
+			<div className='flex justify-between px-[10px]'>
 				<CheckBox checked={checked} onCheck={onCheckHandler}></CheckBox>
+				<p className='text-gray-500 text-base'>{date}</p>
 			</div>
 				{!isUpdate && <p>{title}</p>}
-				{isUpdate && <input type='text' value={title} onChange={(e)=>whenType(e, setTitle)}></input>}
-
-				{!isUpdate ? <p>{summary}</p> : <input type='text' value={summary} onChange={(e)=>whenType(e, setSummary)}></input>}
-		
-			<p>{date}</p>
+				{isUpdate && <input type='text' value={title} className='flex px-[15px] w-[600px]' onChange={(e)=>whenType(e, setTitle)}></input>}
+				{!isUpdate ? <p>{summary}</p> : <input type='text' value={summary} className='px-[25px] w-[600px] text-lg font-thin'onChange={(e)=>whenType(e, setSummary)}></input>}
 		</div>
 	);
 };

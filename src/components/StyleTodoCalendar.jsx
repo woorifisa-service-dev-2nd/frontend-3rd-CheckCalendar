@@ -38,7 +38,7 @@ export const StyleCalendar = styled(Calendar)`
     text-align: center;
     text-transform: uppercase;
     font-weight: bold;
-    font-size: 0.15em;
+    font-size: 0.7em;
   }
 
   .react-calendar__year-view .react-calendar__tile,

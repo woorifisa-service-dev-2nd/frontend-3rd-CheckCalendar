@@ -4,9 +4,11 @@ import WhiteBox from '../layouts/WhiteBox';
 const CheckListContainer = ({checkList, onUpdate}) => {
 
 	return (
-		<div>
-			{checkList.map((item)=><WhiteBox  key={item.id} w={300} y={1/2}> <CheckListItem key={item.id} item={item} onUpdate={onUpdate}></CheckListItem></WhiteBox>)}
-			
+		<div className='w-[650px] mt-[20px]'>
+			{checkList.map((item)=><WhiteBox key={item.id}>
+				<CheckListItem key={item.id} item={item} onUpdate={onUpdate} >
+				</CheckListItem>
+			</WhiteBox>)}
 		</div>
 	);
 };

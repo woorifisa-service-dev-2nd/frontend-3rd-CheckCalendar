@@ -5,63 +5,62 @@ import Status from './components/Status';
 import Calendar from './components/MyCalendar';
 import CheckListContainer from './components/CheckListContainer';
 import Title from './components/Title';
-import DetailBody from './layouts/DetailBody';
 
 const dummyTodos = [
 	{
 		id: 1,
 		date: 'Thu Dec 14 2023',
-		title: 'React 프로젝트1',
-		summary: '체크 리스트 만들기',
+		title: 'React 프로젝트',
+		summary: '18시까지 체크 리스트 만들기📌',
 		checked: true,
 	},
 	{
 		id: 2,
 		date: 'Wed Dec 13 2023',
-		title: 'React 프로젝트2',
-		summary: '체크 리스트 만들기',
+		title: 'React 수업✏',
+		summary: 'props',
 		checked: false,
 	},
 	{
 		id: 3,
-		date: 'Tue Dec 12 2023',
-		title: 'React 프로젝트3',
-		summary: '체크 리스트 만들기',
+		date: 'Thu Dec 14 2023',
+		title: '점심식사',
+		summary: '1시 태국음식점',
 		checked: false,
 	},
 	{
 		id: 5,
 		date: 'Wed Dec 20 2023',
-		title: 'React 프로젝트4',
-		summary: '체크 리스트 만들기',
+		title: '농구🏀',
+		summary: '농구화 챙겨서 2시까지 운동장 도착하기',
 		checked: false,
 	},
 	{
 		id: 6,
-		date: 'Thu Dec 14 2023',
-		title: 'React 프로젝트4',
-		summary: '체크 리스트 만들기',
+		date: 'Fri Dec 15 2023',
+		title: '다이어리 쇼핑',
+		summary: '2024년 다이어리 구매 및 스티커 구경📖',
 		checked: true,
 	},
 	{
 		id: 7,
-		date: 'Fri Dec 22 2023',
-		title: 'React 프로젝트4',
-		summary: '체크 리스트 만들기',
+		date: 'Mon Dec 25 2023',
+		title: '크리스마스 데이트',
+		summary: '영화관람 및 쇼핑🌹💍',
 		checked: false,
 	},
 	{
 		id: 8,
-		date: 'Thu Dec 14 2023',
-		title: 'React 프로젝트4',
-		summary: '체크 리스트 만들기',
+		date: 'Fri Dec 15 2023',
+		title: '스터디 모임',
+		summary: '스터디 관련 이야기 나누기. 필기구 지참',
 		checked: false,
 	},
 	{
 		id: 9,
-		date: 'Thu Dec 14 2023',
-		title: 'React 프로젝트4',
-		summary: '체크 리스트 만들기',
+		date: 'Fri Dec 15 2023',
+		title: 'React 프로젝트 발표',
+		summary: '당당하고 멋지게 체크 리스트 자랑하기💕😘',
 		checked: false,
 	},
 ];
@@ -131,27 +130,25 @@ function App() {
 
 	return (
 		<DefaultLayout>
-			<div id='App' className='flex justify-between w-full h-full' >
-				<WhiteBox w={1} h={1} setting="flex-col space-between justify-around " id='side' className='border-[1px]'>
-					<div id='status' className='border-[1px]'>
-						<Status name="Working" num={workingNum} onClick={getStatusValue} />
-						<Status name="Done" num={doneNum} onClick={getStatusValue} />
+			<div id='App' className='flex place-content-center mt-[30px]' >
+				<WhiteBox w={3} h={3} setting="flex-col space-between justify-around " id='side' className='border-[1px]'>
+					<div id='status' className='mt-[5px]'>
+						<Status name="Working" num={workingNum} onClick={getStatusValue} className="border-solid border-2 border-blue-500 bg-blue-200 w-[30px] text-center"/>
+						<Status name="Done" num={doneNum} onClick={getStatusValue} className="border-solid border-2 border-yello-500 bg-yello-200 w-[30px] text-center"/>
 					</div>
+					<div className='h-[2px] bg-gray-400 my-[16px] my-[15px]'></div>
 					<div className='h-72'></div>
 					<div id='cal' className='border-[1px]'>
 						<Calendar onChange={getCalendarDate} />
 					</div>
 				</WhiteBox>
-				<DetailBody>
-					<div id='body' className='border-[1px]'>
-						<div id='header' className='border-[1px]'>
+					<div id='body' className='mt-[10px] ml-[40px]'>
+						<div id='header'>
 							<Title onAdd={addTodoHandler} date={date} />
 						</div>
-						<CheckListContainer checkList={printList} onUpdate={UpdateList} id='list con' className='border-[1px]'>
+						<CheckListContainer checkList={printList} onUpdate={UpdateList} id='list con' className=''>
 						</CheckListContainer>
 					</div>
-				</DetailBody>
-
 			</div>
 		</DefaultLayout>
 	);
