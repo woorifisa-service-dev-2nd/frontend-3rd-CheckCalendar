@@ -18,9 +18,11 @@
 </br></br>
 
 ## 2. 협업 툴
-* Git
-* Slack
-* ESLint
+<div style="display:flex; flex-wrap:wrap">
+  <img style="margin-right:1rem" src="https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=Git&logoColor=white">
+ <img style="margin-right:1rem" src="https://img.shields.io/badge/slack-4A154B?style=for-the-badge&logo=slack&logoColor=white">
+ <img style="margin-right:1rem" src="https://img.shields.io/badge/ESLint-4B32C3?style=for-the-badge&logo=ESLint&logoColor=white">
+</div>
 </br></br>
 
 # 🌟핵심 기능 및 구현 방법
