@@ -11,6 +11,7 @@ const Title = ({ onAdd }) => {
     const [summary, setSummary] = useState('dummy summary');
 
     const onAddTodo = () => {
+        console.log(title, summary)
         onAdd({ title, summary });
     };
 
