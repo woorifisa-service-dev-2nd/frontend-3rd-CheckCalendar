@@ -1,5 +1,6 @@
 // import { useState } from 'react';
 import DefaultLayout from './layouts/DefaultLayout';
+import WhiteBox from './layouts/WhiteBox';
 import Header from './components/header';
 
 function App() {
@@ -15,13 +16,13 @@ function App() {
 						달력
 					</div>
 				</div>
-				<div  id='body' className='border-[1px]'>
+				<div id='body' className='border-[1px]'>
 					<div id='header' className='border-[1px]'>
 						<Header />
-						{/* 제목, 날짜 */}
+						제목, 날짜
 					</div>
-					<div id='list con' className='border-[1px]'>
-						<div id='list item'> 리스트들 </div>
+					<div  id='list con' className='border-[1px]'>
+						<WhiteBox id='list item'> 리스트들 </WhiteBox>
 					</div>
 				</div>
 
