@@ -6,7 +6,7 @@ const CheckListContainer = ({checkList}) => {
 	console.log(checkList);
 	return (
 		<div>
-			{checkList.map((item)=><WhiteBox w={300} y={1/2}> <CheckListItem key={item.id} item={item}></CheckListItem></WhiteBox>)}
+			{checkList.map((item)=> <WhiteBox key={item.id} w={300} y={1/2}> <CheckListItem key={item.id} item={item}></CheckListItem></WhiteBox>)}
 			
 		</div>
 	);

@@ -65,7 +65,7 @@ const dummyTodos = [
 ];
 
 function App() {
-	const [status, setStauts] = useState('Done');
+	const [status, setStauts] = useState('Working');
 	const [lists, setDList] = useState(dummyTodos);
 	const [date, setDate] = useState('Thu Dec 14 2023');
 
@@ -76,7 +76,7 @@ function App() {
 
 	const getStatusValue = (updatedStatus) => {
 		setStauts(updatedStatus);
-	}
+	};
 
 	let printList = ''; // 최종적으로 props 보낼 체크리스트 데이터들
 	let workingNum = '0';  // working 해야하는 리스트 개수
@@ -93,7 +93,6 @@ function App() {
 		doneNum = printList.length;
 		workingNum = work.length;
 	}
-	console.log(printList);
 	
 	return (
 		<DefaultLayout>
