@@ -88,7 +88,7 @@ function App() {
 
 	/*Side - Chalendar 동작 */
 	const addTodoHandler = ({ title, summary }) => {
-		let checked = "false"
+		let checked = false
 		if (status == "Done") checked = true;
 		const newList = {
 			id: self.crypto.randomUUID(),
