@@ -3,6 +3,7 @@ import DefaultLayout from './layouts/DefaultLayout';
 import WhiteBox from './layouts/WhiteBox';
 import Status from './components/Status';
 import Calendar from './components/MyCalendar';
+import CheckListContainer from './components/CheckListContainer';
 
 const dummyTodos = [
 	{
@@ -64,7 +65,7 @@ const dummyTodos = [
 ];
 
 function App() {
-	const [status, setStauts] = useState('Working');
+	const [status, setStauts] = useState('Done');
 	const [lists, setDList] = useState(dummyTodos);
 	const [date, setDate] = useState('Thu Dec 14 2023');
 
@@ -89,7 +90,7 @@ function App() {
 		workingNum = work.length;
 	}
 	console.log(printList);
-
+	
 	return (
 		<DefaultLayout>
 			<div id='App' className='flex justify-between w-full h-full' >
@@ -103,14 +104,12 @@ function App() {
 						<Calendar onChange={getCalendatDate}/>
 					</div>
 				</WhiteBox>
-				<div id='body' className='border-[1px]'>
+				<div  id='body'  className='border-[1px]'>
 					<div id='header' className='border-[1px]'>
 						제목, 날짜
 					</div>
-					<div  id='list con' className='border-[1px]'>
-						<WhiteBox w={1/2} id='list item'> 
-						</WhiteBox>
-					</div>
+					<CheckListContainer checkList={printList} id='list con' className='border-[1px]'>
+					</CheckListContainer>
 				</div>
 
 			</div>
