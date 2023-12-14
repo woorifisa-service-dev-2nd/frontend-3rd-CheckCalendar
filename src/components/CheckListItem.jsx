@@ -31,7 +31,6 @@ const CheckListForm = ({item, onUpdate}) => {
 				{!isUpdate ? <p>{summary}</p> : <input type='text' value={summary} onChange={(e)=>whenType(e, setSummary)}></input>}
 		
 			<p>{date}</p>
-			<button>날짜 옮기기</button>
 		</div>
 	);
 };
