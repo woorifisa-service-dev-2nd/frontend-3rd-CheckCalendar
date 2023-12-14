@@ -10,8 +10,6 @@ const CheckListForm = ({item, onUpdate}) => {
 
 
 	const onCheckHandler =(e) => {
-		//setCheck(!checked);
-		//자기 자신의 데이터 수정
 		const value = e.target.checked;
 		onUpdate({id, date, title, summary, checked: value})
 	};
