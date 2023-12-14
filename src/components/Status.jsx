@@ -1,8 +1,11 @@
 import React from 'react';
 
-const Status = () => {
+const Status = ({name, num}) => {
 	return (
-		<div>Status</div>
+		<li className='flex gap-4 justify-between py-1 px-1'>
+			<span>{name}</span>
+			<span>{num}</span>
+		</li>
 	);
 };
 
