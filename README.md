@@ -53,7 +53,7 @@
 
 
 ## 3. Vite 실행 중에 파일명을 바꾸면 Vite가 인식하지 못하는 문제
-주로 `Use react-error-boundary to handle errors in React` 라는 오류로 나타났는데 에러가 표시된 줄이 비어있고 해결을 못했었음
+- 주로 `Use react-error-boundary to handle errors in React` 라는 오류로 나타났는데 에러가 표시된 줄이 비어있고 해결을 못했었음
 - Vite 종료 후 새로운 파일을 생성한 후 기존 내용을 붙여넣기 함
 
 
