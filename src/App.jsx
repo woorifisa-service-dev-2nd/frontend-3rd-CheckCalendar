@@ -14,14 +14,14 @@ function App() {
 						달력
 					</div>
 				</div>
-				<WhiteBox  id='body' className='border-[1px]'>
+				<div  id='body' className='border-[1px]'>
 					<div id='header' className='border-[1px]'>
 						제목, 날짜
 					</div>
 					<div id='list con' className='border-[1px]'>
-						<div id='list item'> 리스트들 </div>
+						<WhiteBox id='list item' w={300} y={200}> 리스트들 </WhiteBox>
 					</div>
-				</WhiteBox>
+				</div>
 
 			</div>
 		</DefaultLayout>	
