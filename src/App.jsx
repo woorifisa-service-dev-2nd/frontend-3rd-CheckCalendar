@@ -1,8 +1,7 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import DefaultLayout from './layouts/DefaultLayout';
 import WhiteBox from './layouts/WhiteBox';
-import Header from './components/header';
-
+import Title from './components/Title';
 const dummyTodos = [
 	{
 		id: 1,
@@ -39,7 +38,6 @@ function App() {
 	const [todos, setTodos] = useState(dummyTodos);
 
 	const addTodoHandler = ({ title, summary }) => {
-		console.log('1')
 		const newTodo = {
 			id: self.crypto.randomUUID(),
 			date: new Date().toDateString,
@@ -47,7 +45,6 @@ function App() {
 			summary,
 			checked: false
 		};
-		console.log('2')
 
 		const updatedTodos = [...todos, newTodo];
 		setTodos(updatedTodos);
@@ -67,7 +64,7 @@ function App() {
 				</WhiteBox>
 				<div id='body' className='border-[1px]'>
 					<div id='header' className='border-[1px]'>
-							<Header onAdd={addTodoHandler} />
+						<Title onAdd={addTodoHandler} />
 					</div>
 					<div id='list con' className='border-[1px]'>
 						<WhiteBox w={1 / 2} id='list item'> 리스트들 </WhiteBox>
