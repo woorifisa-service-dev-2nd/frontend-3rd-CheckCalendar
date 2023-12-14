@@ -7,7 +7,8 @@ const CheckListForm = ({item, onUpdate}) => {
 	const [date, setDate] = useState(item.date);
 	const [checked, setCheck] = useState(item.checked);
 	const [disabled, setDisable] = useState(false);
-	const[isUpdateTitle, setUpdate] = useState(false);
+	const[isUpdate, setUpdate] = useState(true); //true: input 태그로 표시 false: p 태그로 표시
+
 
 	const onCheckHandler =(e) => {
 		//setCheck(!checked);
@@ -16,9 +17,10 @@ const CheckListForm = ({item, onUpdate}) => {
 		onUpdate({id, date, title, summary, checked: value})
 	};
 	
-	const whenType = (e)=>{
+	const whenType = (e, func)=>{
 		let value = e.target.value;
-		setTitle = {value};
+		func(value);
+		onUpdate({id, date, title, summary, checked})
 	}
 
 	return (
@@ -26,18 +28,13 @@ const CheckListForm = ({item, onUpdate}) => {
 			<div className='flex px-2'>	
 				<CheckBox checked={checked} onCheck={onCheckHandler}></CheckBox>
 			</div>
-			<div>
+				{!isUpdate && <p>{title}</p>}
+				{isUpdate && <input type='text' value={title} onChange={(e)=>whenType(e, setTitle)}></input>}
+
+				{!isUpdate ? <p>{summary}</p> : <input type='text' value={summary} onChange={(e)=>whenType(e, setSummary)}></input>}
 		
-			</div>
-
-			<div className="flex ">
-				{!isUpdateTitle && <p>{title}</p>}
-				<button className='mx-2'>수정</button>
-				{isUpdateTitle && <input type='text' value={title} onChange={(e)=>whenType(e)}></input>}
-
-			</div>
-			<p>{summary}</p>
 			<p>{date}</p>
+			<button>날짜 옮기기</button>
 		</div>
 	);
 };
