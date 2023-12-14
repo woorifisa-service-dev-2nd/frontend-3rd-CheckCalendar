@@ -71,7 +71,6 @@ function App() {
 	const [date, setDate] = useState('Thu Dec 14 2023');
 
 	const addTodoHandler = ({ title, summary }) => {
-		console.log(summary, title);
 		const newList = {
 			id: self.crypto.randomUUID(),
 			date: date,
@@ -79,15 +78,12 @@ function App() {
 			summary,
 			checked: false
 		};
-		console.log(newList);
 
 		const updatedLists = [...lists, newList];
-		console.log('제발 추가되어주세요' + updatedLists)
 		setDList(updatedLists);
-	}
+	};
 
 	const getCalendarDate = (updatedDate) => {
-		console.log(updatedDate);
 		setDate(updatedDate);
 	};
 
@@ -111,7 +107,6 @@ function App() {
 		workingNum = work.length;
 	}
 
-	console.log(printList);
 	return (
 		<DefaultLayout>
 			<div id='App' className='flex justify-between w-full h-full' >
