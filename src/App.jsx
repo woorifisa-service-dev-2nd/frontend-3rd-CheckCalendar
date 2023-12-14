@@ -80,6 +80,7 @@ function App() {
 			summary: summary,
 			checked: checked,
 		}
+		console.log(updatedItem);
 		const updatedList = lists.map(list=>list.id === id ? updatedItem : list)
 		setDList(updatedList);
 	}
