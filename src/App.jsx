@@ -5,6 +5,7 @@ import Status from './components/Status';
 import Calendar from './components/MyCalendar';
 import CheckListContainer from './components/CheckListContainer';
 import Title from './components/Title';
+import DetailBody from './layouts/DetailBody';
 
 const dummyTodos = [
 	{
@@ -72,31 +73,33 @@ function App() {
 
 
 	/*CheckList Item 수정 동작 */
-	const UpdateList = ({id, date, title, summary, checked})=>{
+	const UpdateList = ({ id, date, title, summary, checked }) => {
 		const updatedItem = {
 			id: id,
-			date : date,
+			date: date,
 			title: title,
 			summary: summary,
 			checked: checked,
 		}
-		console.log(updatedItem);
-		const updatedList = lists.map(list=>list.id === id ? updatedItem : list)
+		const updatedList = lists.map(list => list.id === id ? updatedItem : list)
 		setDList(updatedList);
 	}
 
 
 	/*Side - Chalendar 동작 */
 	const addTodoHandler = ({ title, summary }) => {
+		let checked = "false"
+		if (status == "Done") checked = true;
 		const newList = {
 			id: self.crypto.randomUUID(),
 			date: date,
 			title,
 			summary,
-			checked: false
+			checked
 		};
 
 		const updatedLists = [...lists, newList];
+		console.log(updatedLists);
 		setDList(updatedLists);
 	};
 
@@ -108,18 +111,20 @@ function App() {
 		setStauts(updatedStatus);
 	};
 
+
 	let printList = ''; // 최종적으로 props 보낼 체크리스트 데이터들
 	let workingNum = '0';  // working 해야하는 리스트 개수
 	let doneNum = '0'; // done 된 리스트 개수
 
 	if (status == 'Working') {
 		printList = lists.filter((list) => list.checked == false && list.date == date);
+		console.log(printList);
 		const done = lists.filter((list) => list.checked == true && list.date == date);
 		workingNum = printList.length;
 		doneNum = done.length;
 	} else if (status == 'Done') {
 		printList = lists.filter((list) => list.checked == true && list.date == date);
-		const work = lists.filter((list) => list.checked == true && list.date == date);
+		const work = lists.filter((list) => list.checked == false && list.date == date);
 		doneNum = printList.length;
 		workingNum = work.length;
 	}
@@ -137,13 +142,15 @@ function App() {
 						<Calendar onChange={getCalendarDate} />
 					</div>
 				</WhiteBox>
-				<div id='body' className='border-[1px]'>
-					<div id='header' className='border-[1px]'>
-						<Title onAdd={addTodoHandler} date={date}/>
+				<DetailBody>
+					<div id='body' className='border-[1px]'>
+						<div id='header' className='border-[1px]'>
+							<Title onAdd={addTodoHandler} date={date} />
+						</div>
+						<CheckListContainer checkList={printList} onUpdate={UpdateList} id='list con' className='border-[1px]'>
+						</CheckListContainer>
 					</div>
-					<CheckListContainer checkList={printList} onUpdate={UpdateList} id='list con' className='border-[1px]'>
-					</CheckListContainer>
-				</div>
+				</DetailBody>
 
 			</div>
 		</DefaultLayout>
