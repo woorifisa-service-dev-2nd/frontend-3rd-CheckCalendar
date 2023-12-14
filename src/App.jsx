@@ -1,5 +1,6 @@
-import { useState } from 'react';
+// import { useState } from 'react';
 import DefaultLayout from './layouts/DefaultLayout';
+import Header from './components/header';
 
 function App() {
 
@@ -16,7 +17,8 @@ function App() {
 				</div>
 				<div  id='body' className='border-[1px]'>
 					<div id='header' className='border-[1px]'>
-						제목, 날짜
+						<Header />
+						{/* 제목, 날짜 */}
 					</div>
 					<div id='list con' className='border-[1px]'>
 						<div id='list item'> 리스트들 </div>
