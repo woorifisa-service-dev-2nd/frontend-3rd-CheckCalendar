@@ -69,6 +69,22 @@ function App() {
 	const [lists, setDList] = useState(dummyTodos);
 	const [date, setDate] = useState('Thu Dec 14 2023');
 
+	/*CheckList Item 수정 동작 */
+	const UpdateList = ({id, date, title, summary, checked})=>{
+		const updatedItem = {
+			id: id,
+			date : date,
+			title: title,
+			summary: summary,
+			checked: checked,
+		}
+
+		const updatedList = lists.map(list=>list.id === id ? updatedItem : list)
+		setDList(updatedList);
+	}
+
+
+	/*Side - Chalendar 동작 */
 	const getCalendarDate = (updatedDate) => {
 		console.log(updatedDate);
 		setDate(updatedDate);
@@ -112,7 +128,7 @@ function App() {
 					<div id='header' className='border-[1px]'>
 						제목, 날짜
 					</div>
-					<CheckListContainer checkList={printList} id='list con' className='border-[1px]'>
+					<CheckListContainer checkList={printList} onUpdate={UpdateList} id='list con' className='border-[1px]'>
 					</CheckListContainer>
 				</div>
 
