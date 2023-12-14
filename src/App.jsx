@@ -69,10 +69,14 @@ function App() {
 	const [lists, setDList] = useState(dummyTodos);
 	const [date, setDate] = useState('Thu Dec 14 2023');
 
-	const getCalendatDate = (updatedDate) => {
+	const getCalendarDate = (updatedDate) => {
 		console.log(updatedDate);
 		setDate(updatedDate);
 	};
+
+	const getStatusValue = (updatedStatus) => {
+		setStauts(updatedStatus);
+	}
 
 	let printList = ''; // 최종적으로 props 보낼 체크리스트 데이터들
 	let workingNum = '0';  // working 해야하는 리스트 개수
@@ -96,12 +100,12 @@ function App() {
 			<div id='App' className='flex justify-between w-full h-full' >
 				<WhiteBox w={1} h={1} setting="flex-col space-between justify-around " id='side' className='border-[1px]'>
 					<div id='status' className='border-[1px]'>
-						<Status name="Working" num={workingNum}/>
-						<Status name="Done" num={doneNum}/>
+						<Status name="Working" num={workingNum} onClick={getStatusValue}/>
+						<Status name="Done" num={doneNum} onClick={getStatusValue}/>
 					</div>
 					<div className='h-72'></div>
 					<div id='cal' className='border-[1px]'>
-						<Calendar onChange={getCalendatDate}/>
+						<Calendar onChange={getCalendarDate}/>
 					</div>
 				</WhiteBox>
 				<div  id='body'  className='border-[1px]'>
