@@ -66,7 +66,6 @@ const dummyTodos = [
 ];
 
 function App() {
-
 	const [status, setStauts] = useState('Working');
 	const [lists, setDList] = useState(dummyTodos);
 	const [date, setDate] = useState('Thu Dec 14 2023');
@@ -81,7 +80,6 @@ function App() {
 			summary: summary,
 			checked: checked,
 		}
-
 		const updatedList = lists.map(list=>list.id === id ? updatedItem : list)
 		setDList(updatedList);
 	}
@@ -89,7 +87,6 @@ function App() {
 
 	/*Side - Chalendar 동작 */
 	const addTodoHandler = ({ title, summary }) => {
-		console.log(summary, title)
 		const newList = {
 			id: self.crypto.randomUUID(),
 			date: date,
@@ -97,20 +94,18 @@ function App() {
 			summary,
 			checked: false
 		};
-		console.log(newList)
 
 		const updatedLists = [...lists, newList];
 		setDList(updatedLists);
-	}
+	};
 
 	const getCalendarDate = (updatedDate) => {
-		console.log(updatedDate);
 		setDate(updatedDate);
 	};
 
 	const getStatusValue = (updatedStatus) => {
 		setStauts(updatedStatus);
-	}
+	};
 
 	let printList = ''; // 최종적으로 props 보낼 체크리스트 데이터들
 	let workingNum = '0';  // working 해야하는 리스트 개수
@@ -127,7 +122,6 @@ function App() {
 		doneNum = printList.length;
 		workingNum = work.length;
 	}
-	console.log(printList);
 
 	return (
 		<DefaultLayout>

@@ -1,6 +1,6 @@
-import { styled } from 'styled-components';
-import Calendar from 'react-calendar';
-import 'react-calendar/dist/Calendar.css';
+import { styled } from "styled-components";
+import Calendar from "react-calendar";
+import "react-calendar/dist/Calendar.css";
 
 export const CalendarBox = styled.div`
   display: flex;
