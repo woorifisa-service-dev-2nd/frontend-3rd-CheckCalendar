@@ -83,8 +83,8 @@ function App() {
 		const updatedList = lists.map(list => list.id === id ? updatedItem : list)
 		setDList(updatedList);
 	}
-	
-	
+
+
 	/*CheckList Item 추가 동작 */
 	const addTodoHandler = ({ title, summary }) => {
 		let checked = false
@@ -96,16 +96,22 @@ function App() {
 			summary,
 			checked
 		};
-		
+
 		const updatedLists = [...lists, newList];
 		setDList(updatedLists);
 	};
-	
+
+	const delTodoHandlar = (id) => {
+		const deleteTodos = lists.filter(list => list.id !== id);
+		console.log(deleteTodos);
+		setDList(deleteTodos)
+	}
+
 	/*Side - Chalendar 날짜 선택 동작 */
 	const getCalendarDate = (updatedDate) => {
 		setDate(updatedDate);
 	};
-	
+
 	/*Side - Working-Done 변경 동작 */
 	const getStatusValue = (updatedStatus) => {
 		setStauts(updatedStatus);
@@ -133,8 +139,8 @@ function App() {
 			<div id='App' className='flex place-content-center mt-[30px]' >
 				<WhiteBox w={3} h={3} setting="flex-col space-between justify-around " id='side' className='border-[1px]'>
 					<div id='status' className='mt-[5px]'>
-						<Status name="Working" num={workingNum} onClick={getStatusValue} className="border-solid border-2 border-blue-500 bg-blue-200 w-[30px] text-center"/>
-						<Status name="Done" num={doneNum} onClick={getStatusValue} className="border-solid border-2 border-yello-500 bg-yello-200 w-[30px] text-center"/>
+						<Status name="Working" num={workingNum} onClick={getStatusValue} className="border-solid border-2 border-blue-500 bg-blue-200 w-[30px] text-center" />
+						<Status name="Done" num={doneNum} onClick={getStatusValue} className="border-solid border-2 border-yello-500 bg-yello-200 w-[30px] text-center" />
 					</div>
 					<div className='h-[2px] bg-gray-400 my-[16px] my-[15px]'></div>
 					<div className='h-72'></div>
@@ -142,13 +148,13 @@ function App() {
 						<Calendar onChange={getCalendarDate} />
 					</div>
 				</WhiteBox>
-					<div id='body' className='mt-[10px] ml-[40px]'>
-						<div id='header'>
-							<Title onAdd={addTodoHandler} state={status}date={date} />
-						</div>
-						<CheckListContainer checkList={printList} onUpdate={UpdateList} id='list con' className=''>
-						</CheckListContainer>
+				<div id='body' className='mt-[10px] ml-[40px]'>
+					<div id='header'>
+						<Title onAdd={addTodoHandler} state={status} date={date} />
 					</div>
+					<CheckListContainer checkList={printList} onUpdate={UpdateList} onDelete={delTodoHandlar} id='list con' className=''>
+					</CheckListContainer>
+				</div>
 			</div>
 		</DefaultLayout>
 	);
