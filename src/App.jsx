@@ -83,9 +83,9 @@ function App() {
 		const updatedList = lists.map(list => list.id === id ? updatedItem : list)
 		setDList(updatedList);
 	}
-
-
-	/*Side - Chalendar 동작 */
+	
+	
+	/*CheckList Item 추가 동작 */
 	const addTodoHandler = ({ title, summary }) => {
 		let checked = false
 		if (status == "Done") checked = true;
@@ -96,15 +96,17 @@ function App() {
 			summary,
 			checked
 		};
-
+		
 		const updatedLists = [...lists, newList];
 		setDList(updatedLists);
 	};
-
+	
+	/*Side - Chalendar 날짜 선택 동작 */
 	const getCalendarDate = (updatedDate) => {
 		setDate(updatedDate);
 	};
-
+	
+	/*Side - Working-Done 변경 동작 */
 	const getStatusValue = (updatedStatus) => {
 		setStauts(updatedStatus);
 	};
@@ -142,7 +144,7 @@ function App() {
 				</WhiteBox>
 					<div id='body' className='mt-[10px] ml-[40px]'>
 						<div id='header'>
-							<Title onAdd={addTodoHandler} date={date} />
+							<Title onAdd={addTodoHandler} state={status}date={date} />
 						</div>
 						<CheckListContainer checkList={printList} onUpdate={UpdateList} id='list con' className=''>
 						</CheckListContainer>
