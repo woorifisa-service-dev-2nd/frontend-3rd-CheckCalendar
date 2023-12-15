@@ -27,21 +27,179 @@
 
 # 🌟핵심 기능 및 구현 방법
 
-## 1. 체크리스트 컴포넌트
-- 체크 리스트 컴포넌트를 어떤 형식으로 구현을 했고
-- 어떻게 재사용 가능한지
-## 1-1. 체크리스트 출력
-- 체크를 어떻게 출력하게 구현했는지(컴포넌트와 유사하면 삭제)
-## 1-2. 체크리스트 추가
-- 체크리스트 추가를 어떻게 구현했는지
-## 1-3. 체크리스트 수정
-- 체크리스트 수정 방식
-## 2. 캘린더 라이브러리
-- 캘린더 라이브러리를 어떻게 구현했는지
+## 0.체크리스트 컴포넌트
+![Slide1](https://github.com/woorifisa-service-dev-2nd/frontend-3rd-CheckCalendar/assets/101613808/57cdd297-d180-4fac-bc0d-d697a1b772a6)
+- 배경색, 하얀 상자와 같은 레이아웃 요소를 컴포넌트로 나누어 재사용 가능하도록 했습니다.
+- 기능을 구분하여 컴포넌트로 구성해 수정을 용이하게 했으며, 반복되는 부분에 재사용하였습니다.
+- 
+## 1. 캘린더 라이브러리
+![image](https://github.com/woorifisa-service-dev-2nd/frontend-3rd-CheckCalendar/assets/101613808/65f34cd5-f5d7-4cd1-b577-3936ad8d60a4)
+
+```shell
+npm i react-calendar
+```
+https://www.npmjs.com/package/react-calendar
+
+react-calendar 라이브러리를 사용해 구현했습니다.
+
+`StyleTodoCalendar.jsx`에는 캘린더에 적용할 스타일이 작성되어있습니다.
+작성된 스타일과 라이브러리를 활용해 `MyCalendar`컴포넌트를 작성했습니다.
+
+```jsx
+const MyCalendar = ({onChange}) => {
+	const [nowDate, setNowDate] = useState(new Date());
+
+	const handleDateChange = (selectedDate) => {
+		const formattedDate = moment(selectedDate).format('ddd MMM DD YYYY');
+		onChange(formattedDate);
+		setNowDate(moment(selectedDate).format('YYYY년 MM월 DD일'));
+	};
+```
+
+App 컴포넌트의 getCalendarDate 함수를 Props로 전달해 캘린더에서 날짜를 클릭하면 App컴포넌트의 상태를 바꿀 수 있습니다.
+
+```jsx
+const [date, setDate] = useState(new Date().toDateString());
+const getCalendarDate = (updatedDate) => {
+		setDate(updatedDate);
+	};
+```
 
 
+## 2.체크리스트 항목 데이터 형태
+![image](https://github.com/woorifisa-service-dev-2nd/frontend-3rd-CheckCalendar/assets/101613808/b4eed7c2-afb5-4bc6-b7be-723eff603333)
+```jsx
+const [date, setDate] = useState(new Date().toDateString());
+const getCalendarDate = (updatedDate) => {
+		setDate(updatedDate);
+	};
+```
 
+## 3.체크리스트 필터링
+![image](https://github.com/woorifisa-service-dev-2nd/frontend-3rd-CheckCalendar/assets/101613808/7a7010a5-8069-4d90-ad02-e6ec47a156ca)
 
+리스트 항목이 완료된 항목과 완료되지 않은 항목을 Working과 Done 카테고리로 나누어 보여주기로 했습니다. 우측에는 각 카테고리의 개수를 계산해 표시합니다.
+```jsx
+let printList = ''; // 최종적으로 props 보낼 체크리스트 데이터들
+	let workingNum = '0';  // working 해야하는 리스트 개수
+	let doneNum = '0'; // done 된 리스트 개수
+
+	if (status == 'Working') {
+		printList = lists.filter((list) => list.checked == false && list.date == date);
+		const done = lists.filter((list) => list.checked == true && list.date == date);
+		workingNum = printList.length;
+		doneNum = done.length;
+	} else if (status == 'Done') {
+		printList = lists.filter((list) => list.checked == true && list.date == date);
+		const work = lists.filter((list) => list.checked == false && list.date == date);
+		doneNum = printList.length;
+		workingNum = work.length;
+	}
+```
+
+## 3. 체크리스트 출력
+![image](https://github.com/woorifisa-service-dev-2nd/frontend-3rd-CheckCalendar/assets/101613808/cab64791-cd0c-4a99-bcca-bf732fa21024)
+
+APP컴포넌트에서 전달된 데이터 배열을 CheckListContainer 컴포넌트에서 하나의 객체로 분리해 전달해 CheckListItem에서 보여줍니다.
+```jsx
+const CheckListItem = ({item, onUpdate}) => {
+	const id = item.id;
+	const [title, setTitle] = useState(item.title);
+	const [summary, setSummary] = useState(item.summary);
+	const date = item.date;
+	const checked = item.checked;
+
+	return(
+		<CheckBox checked={checked} onCheck={onCheckHandler}></CheckBox>
+		<p>{title}</p>
+		<p>{summary}</p>
+		<p>{date}</p>
+	);
+};
+```
+## 4.체크리스트 추가
+![image](https://github.com/woorifisa-service-dev-2nd/frontend-3rd-CheckCalendar/assets/101613808/eff68598-e6f1-4b24-ba4e-ef6c1041501b)
+
+Calendar 컴포넌트에서 받아온 날짜 문자열을 Title 컴포넌트에서 받고 두 개의 인풋 태그로 체크리스트의 제목과 상세 내용을 작성해 추가 할 수 있습니다.
+선택된 카테고리가  Working이면 체크가 안된 항목을, Done이 선택됐으면 체크된 항목으로 생성합니다.
+
+## 5.체크리스트 수정
+
+### a. 체크박스에 따라 Working, Done 상태 변경
+![image](https://github.com/woorifisa-service-dev-2nd/frontend-3rd-CheckCalendar/assets/101613808/0204a282-4e1d-4c45-abb6-5503902d0e75)
+![image](https://github.com/woorifisa-service-dev-2nd/frontend-3rd-CheckCalendar/assets/101613808/a060e263-357c-4021-8764-ed5e19958704)
+
+체크리스트 데이터 객체의  checked를 수정해주면 APP.jsx에서 렌더링이 되면서 `3.` 에서 구현한 대로 필터링이 됩니다.
+결과적으로 Working 카테고리와 Done 카테고리 사이에서 체크리스트 항목이 이동하는 것처럼 느껴지게 됩니다.
+
+```jsx
+-------------CheckBox 컴포넌트 ------------------
+const CheckBox = ({checked, onCheck}) => {
+  return (
+    <label>
+        <input
+            type="checkbox"
+            checked={checked}
+            onChange={(e)=>onCheck(e)}/>
+    </label>
+  )
+}
+---------------------CheckListItem 컴포넌트------------------------
+const checked = item.checked;
+
+<CheckBox checked={checked} onCheck={onCheckHandler}></CheckBox>
+```
+
+```jsx
+const onCheckHandler =(e) => {
+		const value = e.target.checked;
+		onUpdate({id, date, title, summary, checked: value})
+	};
+```
+
+### b. 체크리스트 항목의 제목과 상세 수정
+
+![타이핑](https://github.com/woorifisa-service-dev-2nd/frontend-3rd-CheckCalendar/assets/101613808/c0a7d14c-9ca8-4a50-947e-7c4562612c96)
+
+처음 수정 기능을 구현 할 때, 두 가지 방법을 생각했습니다.
+
+1) 수정 버튼을 누르면 창을 추가로 띄워서 수정
+2) 이미 나타나있는 페이지에서 바로 수정
+
+하루에도 수많은 체크리스트들이 있을텐데 수정하기 위해 체크리스트 마다 창을 열고 닫는 과정이 피로할 것 같아, 2)번 방법을 선택했습니다.
+
+그러나 실수로 클릭해 수정할 수 있다는 점도 생각해 
+
+수정 버튼을 눌렀을 때만 입력 태그로 바뀌는 기능을 추가하기 쉽게
+
+컴포넌트의 state 값에 따라서 p태그와 input 태그를 오갈 수 있는 상태로 코드를 완성했습니다.
+```jsx
+<input type='text' value={title} onChange={(e)=>whenType(e, setTitle)}></input>
+```
+
+```jsx
+const isUpdate = true; //true: input 태그로 표시 false: p 태그로 표시
+
+const whenType = (e, func)=>{
+		let value = e.target.value;
+		func(value);
+		onUpdate({id, date, title, summary, checked}
+	}
+```
+onCheckHandler, whenType 두 이벤트 핸들러에 사용된 onUpdate()함수는 주어진 인수의 내용으로 App.jsx내부 데이터 배열을 수정합니다. 
+```jsx
+const UpdateList = ({ id, date, title, summary, checked }) => {
+		const updatedItem = {
+			id: id,
+			date: date,
+			title: title,
+			summary: summary,
+			checked: checked,
+		}
+		const updatedList = lists.map(list => list.id === id ? updatedItem : list)
+		setDList(updatedList);
+	}
+```
 </br></br>
 # 👀트러블 슈팅
 
@@ -56,6 +214,9 @@
 - 주로 `Use react-error-boundary to handle errors in React` 라는 오류로 나타났는데 에러가 표시된 줄이 비어있고 해결을 못했었음
 - Vite 종료 후 새로운 파일을 생성한 후 기존 내용을 붙여넣기 함
 
+## 4. 깃 레포 생성 후 vite 프로젝트 생성했을 때 문제
+깃 레포 폴더 안에 프로젝트 폴더가 생성되어 git 명령어를 사용할때와 `npm run dev` 명령어를 사용할 때 경로를 계속 왔다갔다해야해서 불편했습니다.
+기존 레포를 삭제 하고 프로젝트 생성을 먼저 한 후 새로운 깃 레포에 푸시하여 해결했습니다.
 
 # ⚖️도메인 용어 정의(화면 구성 정의)
 (여기서 어떻게 화면을 구성했고, 어떠한 방식으로 데이터와 이미지가 전달되는지 등을 설명하면 좋을 듯)
@@ -81,6 +242,8 @@ ex
 >
 
 ### **박선주**
->
+> 처음엔 간단한 동작이라 생각했는데 프로젝트를 생성하고 데이터 흐름과 수정에서 생각해야 할 것이 많아 생각보다 시간이 많이 걸렸습니다.
+> 코드를 작성하고 보니 State 변수를 불필요한 곳에 남발한 것 같았습니다. 변수를 선언할 때 State 변수와 일반 변수의 차이를 구분해서 사용해야겠습니다.
 
 ### **김태혁**
+>
