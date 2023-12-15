@@ -101,13 +101,12 @@ function App() {
 		setDList(updatedLists);
 	};
 
-	const delTodoHandlar = (id) => {
+	const delTodoHandler = (id) => {
 		const deleteTodos = lists.filter(list => list.id !== id);
-		console.log(deleteTodos);
 		setDList(deleteTodos)
 	}
 
-	/*Side - Chalendar 날짜 선택 동작 */
+	/*Side - Calendar 날짜 선택 동작 */
 	const getCalendarDate = (updatedDate) => {
 		setDate(updatedDate);
 	};
@@ -152,7 +151,7 @@ function App() {
 					<div id='header'>
 						<Title onAdd={addTodoHandler} state={status} date={date} />
 					</div>
-					<CheckListContainer checkList={printList} onUpdate={UpdateList} onDelete={delTodoHandlar} id='list con' className=''>
+					<CheckListContainer checkList={printList} onUpdate={UpdateList} onDelete={delTodoHandler} id='list con' className=''>
 					</CheckListContainer>
 				</div>
 			</div>
