@@ -120,10 +120,44 @@ const CheckListItem = ({item, onUpdate}) => {
 ## 4.체크리스트 추가
 ![image](https://github.com/woorifisa-service-dev-2nd/frontend-3rd-CheckCalendar/assets/101613808/eff68598-e6f1-4b24-ba4e-ef6c1041501b)
 
-Calendar 컴포넌트에서 받아온 날짜 문자열을 Title 컴포넌트에서 받고 두 개의 인풋 태그로 체크리스트의 제목과 상세 내용을 작성해 추가 할 수 있습니다.
-선택된 카테고리가  Working이면 체크가 안된 항목을, Done이 선택됐으면 체크된 항목으로 생성합니다.
+두 개의 인풋 태그로 체크리스트의 제목과 상세 내용을 작성해 추가 할 수 있습니다.
+제목 하단에 표시되는 카테고리가  Working이면 체크가 안된 항목을, Done이 선택됐으면 체크된 항목으로 생성합니다.
+```jsx
+const addTodoHandler = ({ title, summary }) => {
+	let checked = false
+	if (status == "Done") checked = true;
+	const newList = {
+		id: self.crypto.randomUUID(),
+		date: date,
+		title,
+		summary,
+		checked
+	};
 
-## 5.체크리스트 수정
+	const updatedLists = [...lists, newList];
+	setDList(updatedLists);
+};
+```
+
+## 5.체크리스트 삭제
+![image](https://github.com/woorifisa-service-dev-2nd/frontend-3rd-CheckCalendar/assets/138103209/7a7ebe15-2a47-44ec-84cd-e19ce8816edf)
+
+CheckListContainer를 통해 각 체크리스트 데이터 객체에 생성된 삭제 버튼을 누르게 되면 해당 데이터 객체의 id값을 App의 delTodoHandlar로 가져옵니다.
+가져온 id와 일치하지 않는 id를 deleteTodos에 담아 새로운 deleteTodos를 생성한 후 리렌더링 합니다.
+
+```jsx
+-------------CheckListContainer 컴포넌트 ------------------
+<div className='text-end'>
+	<button onClick = {() => onDelete(item.id)}>삭제</button>
+</div>
+-------------App 컴포넌트 ------------------
+const delTodoHandlar = (id) => {
+	const deleteTodos = lists.filter(list => list.id !== id);
+	setDList(deleteTodos)
+}
+```
+
+## 6.체크리스트 수정
 
 ### a. 체크박스에 따라 Working, Done 상태 변경
 ![image](https://github.com/woorifisa-service-dev-2nd/frontend-3rd-CheckCalendar/assets/101613808/0204a282-4e1d-4c45-abb6-5503902d0e75)
@@ -246,4 +280,4 @@ ex
 > 코드를 작성하고 보니 State 변수를 불필요한 곳에 남발한 것 같았습니다. 변수를 선언할 때 State 변수와 일반 변수의 차이를 구분해서 사용해야겠습니다.
 
 ### **김태혁**
->
+>git과 eslint를 이전에 했던 프로젝트 경험을 통해서 어떻게 규칙을 설정하면 좋을지, 또 프로젝트를 기능 작성 전에 다같이 화면을 어떻게 구성할 지 먼저 얘기를 나누고 설정을 하고 진행하면서 이전보다 훨씬 수월하게 프로젝트를 수행하였습니다. 또한 반복되는 화면이나 기능을 component를 이용하도록 노력을 하며 작성을 하면서 처음에는 이 방법이 오히려 더 어렵고 귀찮다고 생각했지만 막상 후반부에 기능을 갑자기 추가하거나 수정하려고 할 때 왜 이렇게 사용해야 하는지 알 수 있었습니다.
