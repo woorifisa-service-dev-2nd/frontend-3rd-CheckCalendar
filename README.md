@@ -69,10 +69,13 @@ const getCalendarDate = (updatedDate) => {
 ## 2.체크리스트 항목 데이터 형태
 ![image](https://github.com/woorifisa-service-dev-2nd/frontend-3rd-CheckCalendar/assets/101613808/b4eed7c2-afb5-4bc6-b7be-723eff603333)
 ```jsx
-const [date, setDate] = useState(new Date().toDateString());
-const getCalendarDate = (updatedDate) => {
-		setDate(updatedDate);
-	};
+{
+		id: 9,
+		date: 'Thu Dec 15 2023',
+		title: '스터디 모임',
+		summary: '스터디 관련 이야기 나누기. 필기구 지참',
+		checked: false, //체크 박스 :Workig, Done 상태
+	},
 ```
 
 ## 3.체크리스트 필터링
@@ -253,11 +256,17 @@ const UpdateList = ({ id, date, title, summary, checked }) => {
 기존 레포를 삭제 하고 프로젝트 생성을 먼저 한 후 새로운 깃 레포에 푸시하여 해결했습니다.
 
 # ⚖️도메인 용어 정의(화면 구성 정의)
-(여기서 어떻게 화면을 구성했고, 어떠한 방식으로 데이터와 이미지가 전달되는지 등을 설명하면 좋을 듯)
-ex
-- `App.jsx` : 메인 랜더링 화면 / 체크리스트들의 데이터를 받아 조작 후 화면에 랜더링 및 각종 함수 구현...
-    -> `UpdateList({id, date, title, summary, checked})` : 체크리스트의 값을 변경된 값으로 바꾸고 그에 따라 화면 다시 랜더링
-    .... 이런식으로 작성하면 될 듯
+### 컴포넌트 폴더 구조
+![Untitled](https://github.com/woorifisa-service-dev-2nd/frontend-3rd-CheckCalendar/assets/101613808/35506ed2-abd2-4a67-9471-7b36828c16d9)
+
+|함수|설명|
+|:-----:|:------|
+
+|getCalendarDate()|Calendar에서 선택한 날짜를 가져오는 함수|
+|getStatusValue()|사용자가 선택한 카테고리를 가져오는 함수|
+|addTodoHandler()|체크 리스트 추가|
+|UpdateList()|체크리스트 내용 수정|
+|delTodoHandler()|체크리스트 삭제|
 
 </br></br>
 
