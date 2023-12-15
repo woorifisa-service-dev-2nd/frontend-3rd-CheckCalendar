@@ -39,8 +39,8 @@ const dummyTodos = [
 		id: 6,
 		date: 'Fri Dec 15 2023',
 		title: '다이어리 쇼핑',
-		summary: '2024년 다이어리 구매 및 스티커 구경📖',//ap
-		checked: true,//Working
+		summary: '2024년 다이어리 구매 및 스티커 구경📖',
+		checked: true,
 	},
 	{
 		id: 7,
