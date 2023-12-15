@@ -68,7 +68,7 @@ const dummyTodos = [
 function App() {
 	const [status, setStauts] = useState('Working');
 	const [lists, setDList] = useState(dummyTodos);
-	const [date, setDate] = useState('Thu Dec 14 2023');
+	const [date, setDate] = useState(new Date().toDateString());
 
 
 	/*CheckList Item 수정 동작 */
@@ -117,7 +117,6 @@ function App() {
 
 	if (status == 'Working') {
 		printList = lists.filter((list) => list.checked == false && list.date == date);
-		console.log(printList);
 		const done = lists.filter((list) => list.checked == true && list.date == date);
 		workingNum = printList.length;
 		doneNum = done.length;
