@@ -260,8 +260,7 @@ const UpdateList = ({ id, date, title, summary, checked }) => {
 ![Untitled](https://github.com/woorifisa-service-dev-2nd/frontend-3rd-CheckCalendar/assets/101613808/35506ed2-abd2-4a67-9471-7b36828c16d9)
 
 |함수|설명|
-|:-----:|:------|
-
+|:---:|:---|
 |getCalendarDate()|Calendar에서 선택한 날짜를 가져오는 함수|
 |getStatusValue()|사용자가 선택한 카테고리를 가져오는 함수|
 |addTodoHandler()|체크 리스트 추가|
