@@ -119,7 +119,6 @@ function App() {
 
 	if (status == 'Working') {
 		printList = lists.filter((list) => list.checked == false && list.date == date);
-		console.log(printList);
 		const done = lists.filter((list) => list.checked == true && list.date == date);
 		workingNum = printList.length;
 		doneNum = done.length;
