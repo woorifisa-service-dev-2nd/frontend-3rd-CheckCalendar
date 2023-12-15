@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import Calendar from 'react-calendar';
 import * as S from './StyleTodoCalendar';
 import moment from 'moment';
 
