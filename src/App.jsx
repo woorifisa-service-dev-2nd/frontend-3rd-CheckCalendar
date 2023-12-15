@@ -98,7 +98,6 @@ function App() {
 		};
 
 		const updatedLists = [...lists, newList];
-		console.log(updatedLists);
 		setDList(updatedLists);
 	};
 
