@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import icon from './Image/icons8-tasklist.gif';
 
-const Title = ({ onAdd, date, name }) => {
+const Title = ({ onAdd, date, name, state }) => {
 
 
 	const [title, setTitle] = useState('');
@@ -22,6 +22,7 @@ const Title = ({ onAdd, date, name }) => {
 				<h1 className='mt-[10px] mr-[15px] text-5xl font-border text-gray-800'>Check Calendar</h1>
 				<img src={icon} alt="todoIcon" />
 			</div>
+				<h1 className='mt-[10px] mr-[15px] text-3xl font-border text-gray-800'>{state}</h1>
 			<p className='mt-[15px] text-gray-600'>Today is {date}</p>
 			<div className='flex inline-block align-center'>
 				<input

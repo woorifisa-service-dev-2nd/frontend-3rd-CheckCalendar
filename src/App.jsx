@@ -39,8 +39,8 @@ const dummyTodos = [
 		id: 6,
 		date: 'Fri Dec 15 2023',
 		title: '다이어리 쇼핑',
-		summary: '2024년 다이어리 구매 및 스티커 구경📖',
-		checked: true,
+		summary: '2024년 다이어리 구매 및 스티커 구경📖',//ap
+		checked: true,//Working
 	},
 	{
 		id: 7,
@@ -68,7 +68,7 @@ const dummyTodos = [
 function App() {
 	const [status, setStauts] = useState('Working');
 	const [lists, setDList] = useState(dummyTodos);
-	const [date, setDate] = useState('Thu Dec 14 2023');
+	const [date, setDate] = useState(new Date().toDateString());
 
 
 	/*CheckList Item 수정 동작 */
@@ -83,9 +83,9 @@ function App() {
 		const updatedList = lists.map(list => list.id === id ? updatedItem : list)
 		setDList(updatedList);
 	}
-
-
-	/*Side - Chalendar 동작 */
+	
+	
+	/*CheckList Item 추가 동작 */
 	const addTodoHandler = ({ title, summary }) => {
 		let checked = false
 		if (status == "Done") checked = true;
@@ -96,16 +96,18 @@ function App() {
 			summary,
 			checked
 		};
-
+		
 		const updatedLists = [...lists, newList];
 		console.log(updatedLists);
 		setDList(updatedLists);
 	};
-
+	
+	/*Side - Chalendar 날짜 선택 동작 */
 	const getCalendarDate = (updatedDate) => {
 		setDate(updatedDate);
 	};
-
+	
+	/*Side - Working-Done 변경 동작 */
 	const getStatusValue = (updatedStatus) => {
 		setStauts(updatedStatus);
 	};
@@ -144,7 +146,7 @@ function App() {
 				</WhiteBox>
 					<div id='body' className='mt-[10px] ml-[40px]'>
 						<div id='header'>
-							<Title onAdd={addTodoHandler} date={date} />
+							<Title onAdd={addTodoHandler} state={status}date={date} />
 						</div>
 						<CheckListContainer checkList={printList} onUpdate={UpdateList} id='list con' className=''>
 						</CheckListContainer>

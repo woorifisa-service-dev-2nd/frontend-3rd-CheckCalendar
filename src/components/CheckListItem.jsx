@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import CheckBox from './CheckBox';
 const CheckListItem = ({ item, onUpdate }) => {
-	const [id, setId] = useState(item.id);
+	const id = item.id;
 	const [title, setTitle] = useState(item.title);
 	const [summary, setSummary] = useState(item.summary);
-	const [date, setDate] = useState(item.date);
-	const [checked, setCheck] = useState(item.checked);
-	const [isUpdate, setUpdate] = useState(true); //true: input 태그로 표시 false: p 태그로 표시
+	const date = item.date;
+	const checked = item.checked;
+	const isUpdate = true; //true: input 태그로 표시 false: p 태그로 표시
 
 
 	const onCheckHandler = (e) => {
